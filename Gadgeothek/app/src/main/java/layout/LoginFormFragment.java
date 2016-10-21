@@ -3,6 +3,7 @@ package layout;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -11,13 +12,12 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import ch.hsr_heroes.gadgeothek.R;
 
 public class LoginFormFragment extends Fragment {
     private View view;
-    private EditText inputEmail, inputPassword;
+    private TextInputEditText inputEmail, inputPassword;
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
 
     @Override
@@ -31,8 +31,8 @@ public class LoginFormFragment extends Fragment {
 
         this.view = getView();
 
-        this.inputEmail = (EditText) view.findViewById(R.id.inputEmail);
-        this.inputPassword = (EditText) view.findViewById(R.id.inputPassword);
+        this.inputEmail = (TextInputEditText) view.findViewById(R.id.inputEmail);
+        this.inputPassword = (TextInputEditText) view.findViewById(R.id.inputPassword);
 
         this.inputLayoutEmail = (TextInputLayout) view.findViewById(R.id.inputLayoutEmail);
         this.inputLayoutPassword = (TextInputLayout) view.findViewById(R.id.inputLayoutPassword);
