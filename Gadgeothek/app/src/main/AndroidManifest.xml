@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <uses-permission android:name="android.permission.INTERNET" />
 
-        <activity android:name="ch.hsr_heroes.gadgeothek.LoginActivity">
+        <activity android:name="ch.hsr_heroes.gadgeothek.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
