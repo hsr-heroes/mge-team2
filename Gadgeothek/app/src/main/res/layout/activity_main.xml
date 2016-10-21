@@ -8,13 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ch.hsr_heroes.gadgeothek.LoginActivity">
+    tools:context="ch.hsr_heroes.gadgeothek.MainActivity">
 
-   <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="layout.LoginFormFragment"
-        android:id="@+id/fragment"
-        tools:layout="@layout/fragment_login_form" />
+   <FrameLayout
+       android:id="@+id/fragment_container"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" />
 
 </RelativeLayout>
