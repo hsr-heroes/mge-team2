@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/nav_my_gadgets"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="My Gadgets" />
+        <item
+            android:id="@+id/nav_my_reservations"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="My Reservations" />
+        <item
+            android:id="@+id/nav_all_gadgets"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="All Gadgets" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Logout" />
+    </group>
+
+</menu>

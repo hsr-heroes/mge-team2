@@ -41,6 +41,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonLogin = (Button) findViewById(R.id.login);
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
         SharedPreferences preferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String authToken = preferences.getString("auth_token", null);
