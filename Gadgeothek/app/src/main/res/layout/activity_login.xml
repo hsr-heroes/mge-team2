@@ -10,71 +10,97 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.hsr_heroes.gadgeothek.LoginActivity">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-      <android.support.design.widget.TextInputLayout
-          android:id="@+id/inputLayoutEmail"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-         <android.support.design.widget.TextInputEditText
-             android:id="@+id/inputEmail"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:ems="10"
-             android:hint="@string/hint_email"
-             android:inputType="textEmailAddress" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
 
-      </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-      <android.support.design.widget.TextInputLayout
-          android:id="@+id/inputLayoutPassword"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-         <android.support.design.widget.TextInputEditText
-             android:id="@+id/inputPassword"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="8dp"
-             android:ems="10"
-             android:hint="@string/hint_password"
-             android:inputType="textPassword" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
 
-      </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-      <Button
-          android:id="@+id/login"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/button_login"
-          android:background="@color/colorPrimary"
-          android:textColor="@color/textColorPrimary"/>
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_custom_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Do you want to login on a custom server?" />
 
-   </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_custom_server_uri"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-      <Button
-          android:id="@+id/create_an_account"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentStart="true"
-          android:text="Create an account" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_custom_server_uri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/hint_custom_server"
+                android:inputType="textUri"
+                android:text="http://mge8.dev.ifs.hsr.ch/public" />
 
-      <TextView
-          android:id="@+id/textView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_above="@id/create_an_account"
-          android:layout_alignParentStart="true"
-          android:text="Are you in need of an account? Click below to create an account within minutes" />
-   </RelativeLayout>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/button_login"
+            android:textColor="@color/textColorPrimary" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/create_an_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:text="Create an account" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/create_an_account"
+            android:layout_alignParentStart="true"
+            android:text="Are you in need of an account? Click below to create an account within minutes" />
+    </RelativeLayout>
 
 </RelativeLayout>
