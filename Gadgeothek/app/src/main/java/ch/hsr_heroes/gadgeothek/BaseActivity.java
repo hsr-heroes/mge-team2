@@ -57,14 +57,16 @@ public abstract class BaseActivity extends AppCompatActivity
         if (id == R.id.nav_my_gadgets) {
 
         } else if (id == R.id.nav_my_reservations) {
-
+            startActivity(new Intent(BaseActivity.this, MyReservationsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            finish();
         } else if (id == R.id.nav_all_gadgets) {
-
+            startActivity(new Intent(BaseActivity.this, GadgetListActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            finish();
         } else if (id == R.id.nav_logout) {
             LibraryService.logout(new Callback<Boolean>() {
                 @Override
                 public void onCompletion(Boolean input) {
-                    startActivity(new Intent(BaseActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    startActivity(new Intent(BaseActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_ANIMATION));
                     finish();
                     Toast.makeText(BaseActivity.this, "Sucessfully logged out", Toast.LENGTH_LONG).show();
                 }

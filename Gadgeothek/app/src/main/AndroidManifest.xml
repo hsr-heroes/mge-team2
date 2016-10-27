@@ -21,7 +21,11 @@
         <activity android:name=".SignUpActivity" />
         <activity
             android:name=".GadgetListActivity"
-            android:label="@string/title_activity_main"
+            android:label="All Gadgets"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MyReservationsActivity"
+            android:label="My Reservations"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -23,9 +23,8 @@ public class GadgetListActivity extends BaseActivity {
     private GadgetAdapter gadgetAdapter;
 
     protected void onCreateMainContent(ViewGroup contentView) {
-        setTitle("All Gadgets");
         LayoutInflater.from(this).inflate(R.layout.activity_all_gadgets, contentView, true);
-        
+
         gadgetsEmptyPlaceholder = findViewById(R.id.no_gadgets_empty_placeholder);
         gadgetsEmptyText = (TextView) findViewById(R.id.no_gadgets_empty_text);
         myGadgetsList = (RecyclerView) findViewById(R.id.my_gadgets_list);
