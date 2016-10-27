@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
                     @Override
                     public void onCompletion(Boolean loggedIn) {
                         if(loggedIn) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, GadgetListActivity.class));
                             Toast.makeText(LoginActivity.this, "Login succeeded", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
