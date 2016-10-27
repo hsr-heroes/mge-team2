@@ -15,40 +15,30 @@ import ch.hsr_heroes.gadgeothek.domain.Gadget;
 import ch.hsr_heroes.gadgeothek.service.Callback;
 import ch.hsr_heroes.gadgeothek.service.LibraryService;
 
-public class GadgetListActivity extends BaseActivity {
+public class GadgetListActivity extends BaseListActivity {
 
-    private RecyclerView myGadgetsList;
-    private View gadgetsEmptyPlaceholder;
-    private TextView gadgetsEmptyText;
     private GadgetAdapter gadgetAdapter;
 
     protected void onCreateMainContent(ViewGroup contentView) {
-        LayoutInflater.from(this).inflate(R.layout.activity_all_gadgets, contentView, true);
+        super.onCreateMainContent(contentView);
 
-        gadgetsEmptyPlaceholder = findViewById(R.id.no_gadgets_empty_placeholder);
-        gadgetsEmptyText = (TextView) findViewById(R.id.no_gadgets_empty_text);
-        myGadgetsList = (RecyclerView) findViewById(R.id.my_gadgets_list);
-
-        myGadgetsList.setLayoutManager(new LinearLayoutManager(this));
         gadgetAdapter = new GadgetAdapter();
-        myGadgetsList.setAdapter(gadgetAdapter);
+        recyclerView.setAdapter(gadgetAdapter);
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(List<Gadget> input) {
                 gadgetAdapter.setGadgetList(input);
                 if(input.isEmpty()){
-                    gadgetsEmptyText.setText("No Gadgets at this School... Go Go Inspector Gadget =)");
-                    gadgetsEmptyPlaceholder.setVisibility(View.VISIBLE);
+                    setEmptyMessage("No Gadgets at this School... Go Go Inspector Gadget =)");
                 }else{
-                    gadgetsEmptyPlaceholder.setVisibility(View.GONE);
+                    clearEmptyMessage();
                 }
             }
 
             @Override
             public void onError(String message) {
                 Toast.makeText(GadgetListActivity.this, "Error Loading Gadgets "+message, Toast.LENGTH_LONG).show();
-                gadgetsEmptyText.setText(message);
-                gadgetsEmptyPlaceholder.setVisibility(View.VISIBLE);
+                setEmptyMessage( "Error Loading Gadgets "+message);
             }
         });
     }

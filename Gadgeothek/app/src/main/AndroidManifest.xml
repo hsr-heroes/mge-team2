@@ -27,6 +27,10 @@
             android:name=".MyReservationsActivity"
             android:label="My Reservations"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MyLoansListActivity"
+            android:label="My Gadgets"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

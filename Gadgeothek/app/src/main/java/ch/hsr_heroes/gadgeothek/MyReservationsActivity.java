@@ -11,47 +11,36 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hsr_heroes.gadgeothek.BaseActivity;
-import ch.hsr_heroes.gadgeothek.domain.Gadget;
 import ch.hsr_heroes.gadgeothek.domain.Reservation;
 import ch.hsr_heroes.gadgeothek.service.Callback;
 import ch.hsr_heroes.gadgeothek.service.LibraryService;
 
 
-public class MyReservationsActivity extends BaseActivity {
-    private RecyclerView myReservationsList;
-    private View reservationsEmptyPlaceholder;
-    private TextView reservationsEmptyText;
+public class MyReservationsActivity extends BaseListActivity {
+
     private ReservationsAdapter reservationsAdapter;
 
     @Override
     protected void onCreateMainContent(ViewGroup contentView) {
-        LayoutInflater.from(this).inflate(R.layout.activity_my_reservations, contentView, true);
-        myReservationsList = (RecyclerView) findViewById(R.id.my_reservations_list);
-        reservationsEmptyPlaceholder = findViewById(R.id.no_reservations_empty_placeholder);
-        reservationsEmptyText = (TextView) findViewById(R.id.no_reservations_empty_text);
+        super.onCreateMainContent(contentView);
 
-        myReservationsList.setLayoutManager(new LinearLayoutManager(this));
         reservationsAdapter = new ReservationsAdapter();
-        myReservationsList.setAdapter(reservationsAdapter);
-
+        recyclerView.setAdapter(reservationsAdapter);
         LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
                 reservationsAdapter.setReservationList(input);
                 if(input.isEmpty()){
-                    reservationsEmptyText.setText("No Reservations. You can reserve gadgets in the All Gadgets menu :-))");
-                    reservationsEmptyPlaceholder.setVisibility(View.VISIBLE);
+                    setEmptyMessage("No Reservations. You can reserve gadgets in the All Gadgets menu :-))");
                 }else{
-                    reservationsEmptyPlaceholder.setVisibility(View.GONE);
+                    clearEmptyMessage();
                 }
             }
 
             @Override
             public void onError(String message) {
                 Toast.makeText(MyReservationsActivity.this, "Error Loading Reservations "+message, Toast.LENGTH_LONG).show();
-                reservationsEmptyText.setText(message);
-                reservationsEmptyPlaceholder.setVisibility(View.VISIBLE);
+                setEmptyMessage(message);
             }
         });
     }

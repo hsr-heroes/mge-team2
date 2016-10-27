@@ -4,7 +4,7 @@
     tools:showIn="@layout/activity_base">
 
     <LinearLayout
-        android:id="@+id/no_gadgets_empty_placeholder"
+        android:id="@+id/empty_list_placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -12,13 +12,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/no_gadgets_empty_text"
-            android:text="Gadgets werden geladen..."
+            android:id="@+id/empty_list_text"
+            android:text="Reservations werden geladen..."
             android:gravity="center" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_gadgets_list"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
