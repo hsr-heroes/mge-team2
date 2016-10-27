@@ -46,30 +46,11 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_custom_server"
+        <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Do you want to login on a custom server?" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_custom_server_uri"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_custom_server_uri"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="@string/hint_custom_server"
-                android:inputType="textUri"
-                android:text="http://mge8.dev.ifs.hsr.ch/public" />
-
-        </android.support.design.widget.TextInputLayout>
+            android:name="ch.hsr_heroes.gadgeothek.CustomServerPartialFragment"
+            android:id="@+id/fragment" />
 
         <Button
             android:id="@+id/login"
@@ -78,6 +59,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimary"
             android:text="@string/button_login"
+            android:enabled="false"
             android:textColor="@color/textColorPrimary" />
 
     </LinearLayout>
@@ -92,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:text="Create an account" />
+            android:text="@string/button_text_create_account" />
 
         <TextView
             android:id="@+id/textView"
@@ -100,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/create_an_account"
             android:layout_alignParentStart="true"
-            android:text="Are you in need of an account? Click below to create an account within minutes" />
+            android:text="@string/button_description_create_account" />
     </RelativeLayout>
 
 </RelativeLayout>

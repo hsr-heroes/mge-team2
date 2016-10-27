@@ -76,6 +76,12 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="ch.hsr_heroes.gadgeothek.CustomServerPartialFragment"
+            android:id="@+id/fragment" />
+
         <Button
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
