@@ -16,12 +16,12 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutName"
+            android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/inputName"
+                android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -31,12 +31,12 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutEmail"
+            android:id="@+id/input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/inputEmail"
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -46,12 +46,12 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutPassword"
+            android:id="@+id/input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/inputPassword"
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -62,12 +62,12 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutStudentNumber"
+            android:id="@+id/input_layout_student_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/inputStudentNumber"
+                android:id="@+id/input_student_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -83,7 +83,7 @@
             android:id="@+id/fragment" />
 
         <Button
-            android:id="@+id/buttonSignUp"
+            android:id="@+id/button_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

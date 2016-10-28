@@ -25,4 +25,12 @@
     <string name="default_custom_server">http://mge8.dev.ifs.hsr.ch/public</string>
     <string name="button_text_create_account">Create an account</string>
     <string name="button_description_create_account">Are you in need of an account? Click below to create an account within minutes</string>
+    <string name="uri_required">Custom server URI is required</string>
+    <string name="login_successful">Login succeeded</string>
+    <string name="login_failed">Login failed</string>
+    <string name="no_server_connection">Could not connect to server</string>
+    <string name="enter_a_valid_email_address">Please enter a valid email address</string>
+    <string name="email_address_required">Email address is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="registration_failed">Registration failed</string>
 </resources>

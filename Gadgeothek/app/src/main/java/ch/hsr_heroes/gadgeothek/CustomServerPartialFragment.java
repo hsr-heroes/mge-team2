@@ -45,18 +45,21 @@ public class CustomServerPartialFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String uriString = inputCustomServer.getText().toString().trim();
+                boolean isValid = false;
+                String uri = inputCustomServer.getText().toString().trim();
 
-                Uri uri = Uri.parse(uriString);
-                boolean isValid = uri.toString().length() > 5;
+                if(!uri.isEmpty()) {
+                    isValid = ValidationHelper.isValidCustomServer(uri);
 
-                if (isValid) {
-                    inputLayoutCustomServer.setErrorEnabled(false);
+                    if (isValid) {
+                        inputLayoutCustomServer.setErrorEnabled(false);
+                    } else {
+                        inputLayoutCustomServer.setError(getString(R.string.enter_valid_uri));
+                    }
                 } else {
-                    inputLayoutCustomServer.setError(getString(R.string.enter_valid_uri));
+                    inputLayoutCustomServer.setError(getString(R.string.uri_required));
                 }
-
-                ((CustomServerListener) getActivity()).onServerChanged(uri.toString(), isValid);
+                ((CustomServerListener) getActivity()).onServerChanged(uri, isValid);
             }
         });
 
@@ -78,8 +81,8 @@ public class CustomServerPartialFragment extends Fragment {
         return switchCustomServer.isChecked();
     }
 
-    public boolean hasError() {
-        return inputLayoutCustomServer.isErrorEnabled();
+    public boolean isValid() {
+        return ValidationHelper.isValidCustomServer(inputCustomServer);
     }
 
     public String getServer() {
@@ -90,6 +93,10 @@ public class CustomServerPartialFragment extends Fragment {
         } else {
             return getString(R.string.default_server);
         }
+    }
+
+    public void setDescription(String description) {
+        switchCustomServer.setText(description);
     }
 
 

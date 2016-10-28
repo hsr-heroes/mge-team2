@@ -1,17 +1,13 @@
 package ch.hsr_heroes.gadgeothek;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,9 +16,10 @@ import ch.hsr_heroes.gadgeothek.service.Callback;
 import ch.hsr_heroes.gadgeothek.service.LibraryService;
 
 public class LoginActivity extends AppCompatActivity implements CustomServerPartialFragment.CustomServerListener {
-    private TextInputEditText inputEmail, inputPassword, inputCustomURI;
-    private TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutCustomServerURI;
-    private SwitchCompat switchCustomServer;
+    private TextInputEditText inputEmail;
+    private TextInputEditText inputPassword;
+    private TextInputLayout inputLayoutEmail;
+    private TextInputLayout inputLayoutPassword;
     private Button buttonLogin;
     private CustomServerPartialFragment customServerFragment;
 
@@ -30,8 +27,8 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
 
-        if(fragment instanceof CustomServerPartialFragment) {
-            this.customServerFragment = (CustomServerPartialFragment) fragment;
+        if (fragment instanceof CustomServerPartialFragment) {
+            customServerFragment = (CustomServerPartialFragment) fragment;
         }
     }
 
@@ -40,15 +37,13 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        inputEmail = (TextInputEditText) findViewById(R.id.inputEmail);
-        inputPassword = (TextInputEditText) findViewById(R.id.inputPassword);
+        inputEmail = (TextInputEditText) findViewById(R.id.input_email);
+        inputPassword = (TextInputEditText) findViewById(R.id.input_password);
 
-        inputLayoutEmail = (TextInputLayout) findViewById(R.id.inputLayoutEmail);
-        inputLayoutPassword = (TextInputLayout) findViewById(R.id.inputLayoutPassword);
+        inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+        inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
 
-        switchCustomServer = (SwitchCompat) findViewById(R.id.switch_custom_server);
-
-        buttonLogin = (Button) findViewById(R.id.login);
+        buttonLogin = (Button) findViewById(R.id.button_login);
 
         inputEmail.addTextChangedListener(new LocalTextWatcher(inputEmail));
         inputPassword.addTextChangedListener(new LocalTextWatcher(inputPassword));
@@ -76,54 +71,47 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
                 LibraryService.login(email, password, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean loggedIn) {
-                        if(loggedIn) {
+                        if (loggedIn) {
                             startActivity(new Intent(LoginActivity.this, GadgetListActivity.class));
-                            Toast.makeText(LoginActivity.this, "Login succeeded", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, R.string.login_successful, Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(LoginActivity.this, "Could not connect to server\n" + message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection) + "\n" + message, Toast.LENGTH_LONG).show();
                     }
                 });
             }
         });
 
-        SharedPreferences preferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-        String authToken = preferences.getString("auth_token", null);
     }
 
     private void validateEmail() {
-        String email = inputEmail.getText().toString().trim();
-
-        if (email.isEmpty() || !isValidEmail(email)) {
-            this.inputLayoutEmail.setError("Please enter a valid email address");
+        if (!ValidationHelper.isEmpty(inputEmail)) {
+            if (ValidationHelper.isValidEmail(inputEmail)) {
+                this.inputLayoutEmail.setErrorEnabled(false);
+            } else {
+                this.inputLayoutEmail.setError(getString(R.string.enter_a_valid_email_address));
+            }
         } else {
-            this.inputLayoutEmail.setErrorEnabled(false);
+            this.inputLayoutEmail.setError(getString(R.string.email_address_required));
         }
     }
 
     private void validatePassword() {
-        String password = inputPassword.getText().toString().trim();
-
-        if (password.isEmpty()) {
-            this.inputLayoutPassword.setError("Please enter a valid password");
-        } else {
+        if (ValidationHelper.isValidPassword(inputPassword)) {
             this.inputLayoutPassword.setErrorEnabled(false);
+        } else {
+            this.inputLayoutPassword.setError(getString(R.string.password_required));
         }
-    }
-
-    private boolean isValidEmail(String email) {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     @Override
     public void onServerChanged(String newServer, boolean valid) {
-        buttonLogin.setEnabled(valid);
+        buttonLogin.setEnabled(isValidForm());
     }
 
     private class LocalTextWatcher implements TextWatcher {
@@ -147,24 +135,24 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
         @Override
         public void afterTextChanged(Editable s) {
             switch (view.getId()) {
-                case R.id.inputEmail:
+                case R.id.input_email:
                     validateEmail();
                     break;
-                case R.id.inputPassword:
+                case R.id.input_password:
                     validatePassword();
                     break;
             }
 
             // Disable submit button if an error is present or field is empty
             // https://material.google.com/patterns/errors.html#errors-user-input-errors
-            if (inputLayoutEmail.isErrorEnabled() ||
-                    inputLayoutPassword.isErrorEnabled() ||
-                    (customServerFragment.isChecked() && customServerFragment.hasError())) {
-                buttonLogin.setEnabled(false);
-            } else {
-                buttonLogin.setEnabled(true);
-            }
+            buttonLogin.setEnabled(isValidForm());
         }
+    }
+
+    private boolean isValidForm() {
+        return (ValidationHelper.isValidEmail(inputEmail) &&
+                ValidationHelper.isValidPassword(inputPassword) &&
+                (!customServerFragment.isChecked() || (customServerFragment.isChecked() && customServerFragment.isValid())));
     }
 
 }
