@@ -35,4 +35,10 @@
     <string name="registration_failed">Registration failed</string>
     <string name="name_required">Name required</string>
     <string name="student_number_required">Student number is required</string>
+    <string name="reservation_successful">Reservation successful</string>
+    <string name="reservation_failed">Reservation failed</string>
+    <string name="unable_to_reserve_gadget">Unable to reserve gadget</string>
+    <string name="deletion_successful">Reservation successful deleted</string>
+    <string name="deletion_failed">Deletion failed</string>
+    <string name="unable_to_delete_reservation">Unable to delete reservation</string>
 </resources>

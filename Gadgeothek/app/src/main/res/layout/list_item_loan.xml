@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/loan_gadget_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Gadget Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/overdue_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Return Date"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/loan_gadget_name"
-        android:text="Gadget Name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-</LinearLayout>
+        android:text="Overdue"
+        android:textColor="@color/colorOverdue"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"
+        android:id="@+id/overdue" />
+
+</RelativeLayout>
