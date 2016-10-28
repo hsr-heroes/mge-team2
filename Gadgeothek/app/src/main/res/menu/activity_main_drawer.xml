@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group>
+    <group
+        android:id="@+id/nav_activities">
         <item
             android:id="@+id/nav_my_gadgets"
             android:icon="@drawable/ic_menu_camera"
@@ -15,8 +16,8 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="All Gadgets" />
     </group>
-
-    <group>
+    <group
+        android:id="@+id/nav_actions">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_send"
