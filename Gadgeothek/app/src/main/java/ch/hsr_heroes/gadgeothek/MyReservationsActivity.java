@@ -44,7 +44,7 @@ public class MyReservationsActivity extends BaseListActivity {
                     reservationsAdapter.setReservationList(input);
                     clearEmptyMessage();
                 } else {
-                    setEmptyMessage("No Reservations. You can reserve gadgets in the All Gadgets menu :-))");
+                    setEmptyMessage(getString(R.string.no_reservations_found));
                 }
             }
 
@@ -91,6 +91,10 @@ public class MyReservationsActivity extends BaseListActivity {
                                 Toast.makeText(MyReservationsActivity.this, R.string.deletion_successful, Toast.LENGTH_LONG).show();
                                 reservations.remove(position);
                                 notifyItemRemoved(position);
+
+                                if(getItemCount() == 0) {
+                                    setEmptyMessage(getString(R.string.no_reservations_found));
+                                }
                             } else {
                                 Toast.makeText(MyReservationsActivity.this, R.string.deletion_failed, Toast.LENGTH_LONG).show();
                             }
