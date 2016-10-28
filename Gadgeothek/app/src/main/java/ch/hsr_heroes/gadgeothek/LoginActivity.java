@@ -89,26 +89,6 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
 
     }
 
-    private void validateEmail() {
-        if (!ValidationHelper.isEmpty(inputEmail)) {
-            if (ValidationHelper.isValidEmail(inputEmail)) {
-                this.inputLayoutEmail.setErrorEnabled(false);
-            } else {
-                this.inputLayoutEmail.setError(getString(R.string.enter_a_valid_email_address));
-            }
-        } else {
-            this.inputLayoutEmail.setError(getString(R.string.email_address_required));
-        }
-    }
-
-    private void validatePassword() {
-        if (ValidationHelper.isValidPassword(inputPassword)) {
-            this.inputLayoutPassword.setErrorEnabled(false);
-        } else {
-            this.inputLayoutPassword.setError(getString(R.string.password_required));
-        }
-    }
-
     @Override
     public void onServerChanged(String newServer, boolean valid) {
         buttonLogin.setEnabled(isValidForm());
@@ -136,10 +116,10 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
         public void afterTextChanged(Editable s) {
             switch (view.getId()) {
                 case R.id.input_email:
-                    validateEmail();
+                    ValidationHelper.validateEmail(LoginActivity.this, inputLayoutEmail, inputEmail);
                     break;
                 case R.id.input_password:
-                    validatePassword();
+                    ValidationHelper.validatePassword(LoginActivity.this, inputLayoutPassword, inputPassword);
                     break;
             }
 

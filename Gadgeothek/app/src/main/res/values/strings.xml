@@ -33,4 +33,6 @@
     <string name="email_address_required">Email address is required</string>
     <string name="password_required">Password is required</string>
     <string name="registration_failed">Registration failed</string>
+    <string name="name_required">Name required</string>
+    <string name="student_number_required">Student number is required</string>
 </resources>
