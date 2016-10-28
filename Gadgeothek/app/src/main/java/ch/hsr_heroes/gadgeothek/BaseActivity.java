@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.hsr_heroes.gadgeothek.service.Callback;
@@ -39,7 +40,15 @@ public abstract class BaseActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         onCreateMainContent((ViewGroup) findViewById(R.id.content_main));
+
+        TextView textUserEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nav_user_email);
+
+        if (textUserEmail != null) {
+            textUserEmail.setText(LibraryService.getEmail());
+        }
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -71,7 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
                 @Override
                 public void onError(String message) {
-                    Toast.makeText(BaseActivity.this, "Error Logging Out: "+message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(BaseActivity.this, "Error Logging Out: " + message, Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -82,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     private void navigateTo(Class<? extends Activity> targetActivity) {
-        startActivity(new Intent(BaseActivity.this, targetActivity).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_ANIMATION));
+        startActivity(new Intent(BaseActivity.this, targetActivity).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION));
         finish();
     }
 

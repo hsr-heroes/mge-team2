@@ -17,6 +17,7 @@ public class LibraryService {
     private static final String TAG = LibraryService.class.getSimpleName();
     private static LoginToken token;
     private static String serverUrl;
+    private static String email = "";
 
     public static void setServerAddress(String address) {
         Log.d(TAG, "Setting server to " + address);
@@ -27,7 +28,7 @@ public class LibraryService {
         return token != null;
     }
 
-    public static void login(String mail, String password, final Callback<Boolean> callback) {
+    public static void login(final String mail, String password, final Callback<Boolean> callback) {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("email", mail);
         parameter.put("password", password);
@@ -35,6 +36,7 @@ public class LibraryService {
             @Override
             public void onCompletion(LoginToken input) {
                 token = input;
+                email = mail;
                 callback.onCompletion(input != null && !input.getSecurityToken().isEmpty());
             }
 
@@ -44,6 +46,10 @@ public class LibraryService {
             }
         });
         request.execute();
+    }
+
+    public static String getEmail() {
+        return email;
     }
 
     public static void logout(final Callback<Boolean> callback) {
