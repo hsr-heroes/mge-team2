@@ -89,6 +89,7 @@ public class MyReservationsActivity extends BaseListActivity {
                         public void onCompletion(Boolean deleted) {
                             if (deleted) {
                                 Toast.makeText(MyReservationsActivity.this, R.string.deletion_successful, Toast.LENGTH_LONG).show();
+                                reservations.remove(position);
                                 notifyItemRemoved(position);
                             } else {
                                 Toast.makeText(MyReservationsActivity.this, R.string.deletion_failed, Toast.LENGTH_LONG).show();
