@@ -1,5 +1,6 @@
 package ch.hsr_heroes.gadgeothek;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,16 @@ public abstract class BaseListActivity extends BaseActivity {
         emptyListPlaceholder = findViewById(R.id.empty_list_placeholder);
         emptyListText = (TextView) findViewById(R.id.empty_list_text);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshList();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     protected void clearEmptyMessage() {
@@ -28,5 +39,7 @@ public abstract class BaseListActivity extends BaseActivity {
         emptyListText.setText(msg);
         emptyListPlaceholder.setVisibility(View.VISIBLE);
     }
+
+    abstract void refreshList();
 
 }
