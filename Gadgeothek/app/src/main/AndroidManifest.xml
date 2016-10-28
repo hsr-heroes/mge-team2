@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".SignUpActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".GadgetListActivity"
             android:label="All Gadgets"
