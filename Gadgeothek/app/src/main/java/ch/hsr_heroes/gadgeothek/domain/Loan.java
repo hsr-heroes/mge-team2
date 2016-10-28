@@ -36,7 +36,7 @@ public class Loan {
     public boolean isOverdue() {
         if (!isLent())
             return false;
-        return overDueDate().after(new Date());
+        return overDueDate().before(new Date());
     }
 
     public Date overDueDate() {
