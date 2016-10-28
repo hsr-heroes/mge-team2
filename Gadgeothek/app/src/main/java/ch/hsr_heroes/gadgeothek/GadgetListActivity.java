@@ -2,7 +2,6 @@ package ch.hsr_heroes.gadgeothek;
 
 import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,18 +39,21 @@ public class GadgetListActivity extends BaseListActivity {
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(List<Gadget> input) {
-                gadgetAdapter.setGadgetList(input);
-                if(input.isEmpty()){
-                    setEmptyMessage("No Gadgets at this School... Go Go Inspector Gadget =)");
-                }else{
+                if (!input.isEmpty()) {
+                    gadgetAdapter.setGadgetList(input);
                     clearEmptyMessage();
+                } else {
+                    setEmptyMessage("No Gadgets at this School... Go Go Inspector Gadget =)");
                 }
             }
 
             @Override
             public void onError(String message) {
-                Toast.makeText(GadgetListActivity.this, "Error Loading Gadgets "+message, Toast.LENGTH_LONG).show();
-                setEmptyMessage( "Error Loading Gadgets "+message);
+                String errorMessage = getString(R.string.error_loading_gadgets) + "\n" + message;
+                Toast.makeText(GadgetListActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                setEmptyMessage(errorMessage);
+
+                ((GadgetAdapter) recyclerView.getAdapter()).clearGadgetList();
             }
         });
     }
@@ -61,9 +63,10 @@ public class GadgetListActivity extends BaseListActivity {
         loadGadgets();
     }
 
-    private class GadgetAdapter extends RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>{
+    private class GadgetAdapter extends RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder> {
 
         private final List<Gadget> gadgets = new ArrayList<>();
+
         @Override
         public GadgetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new GadgetViewHolder(LayoutInflater.from(parent.getContext())
@@ -82,7 +85,7 @@ public class GadgetListActivity extends BaseListActivity {
                     LibraryService.reserveGadget(g, new Callback<Boolean>() {
                         @Override
                         public void onCompletion(Boolean reserved) {
-                            if(reserved) {
+                            if (reserved) {
                                 startActivity(new Intent(GadgetListActivity.this, MyReservationsActivity.class));
                                 Toast.makeText(GadgetListActivity.this, R.string.reservation_successful, Toast.LENGTH_LONG).show();
                             } else {
@@ -110,7 +113,12 @@ public class GadgetListActivity extends BaseListActivity {
             notifyDataSetChanged();
         }
 
-        class GadgetViewHolder extends RecyclerView.ViewHolder{
+        public void clearGadgetList() {
+            gadgets.clear();
+            notifyDataSetChanged();
+        }
+
+        class GadgetViewHolder extends RecyclerView.ViewHolder {
             private final TextView name;
             private final TextView manufacturer;
             private final ImageView buttonReserve;

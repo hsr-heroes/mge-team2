@@ -1,12 +1,12 @@
 package ch.hsr_heroes.gadgeothek;
 
-import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +28,11 @@ public class MyReservationsActivity extends BaseListActivity {
 
         reservationsAdapter = new ReservationsAdapter();
         recyclerView.setAdapter(reservationsAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                LinearLayout.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
         loadReservations();
     }
 
@@ -35,18 +40,21 @@ public class MyReservationsActivity extends BaseListActivity {
         LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
-                reservationsAdapter.setReservationList(input);
-                if(input.isEmpty()){
-                    setEmptyMessage("No Reservations. You can reserve gadgets in the All Gadgets menu :-))");
-                }else{
+                if (!input.isEmpty()) {
+                    reservationsAdapter.setReservationList(input);
                     clearEmptyMessage();
+                } else {
+                    setEmptyMessage("No Reservations. You can reserve gadgets in the All Gadgets menu :-))");
                 }
             }
 
             @Override
             public void onError(String message) {
-                Toast.makeText(MyReservationsActivity.this, "Error Loading Reservations "+message, Toast.LENGTH_LONG).show();
-                setEmptyMessage(message);
+                String errorMessage = getString(R.string.error_loading_reservations) + "\n" + message;
+                Toast.makeText(MyReservationsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                setEmptyMessage(errorMessage);
+
+                ((ReservationsAdapter) recyclerView.getAdapter()).clearReservationList();
             }
         });
     }
@@ -56,9 +64,10 @@ public class MyReservationsActivity extends BaseListActivity {
         loadReservations();
     }
 
-    private class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapter.ReservationViewHolder>{
+    private class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapter.ReservationViewHolder> {
 
         private final List<Reservation> reservations = new ArrayList<>();
+
         @Override
         public ReservationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ReservationViewHolder(LayoutInflater.from(parent.getContext())
@@ -78,7 +87,7 @@ public class MyReservationsActivity extends BaseListActivity {
                     LibraryService.deleteReservation(r, new Callback<Boolean>() {
                         @Override
                         public void onCompletion(Boolean deleted) {
-                            if(deleted) {
+                            if (deleted) {
                                 Toast.makeText(MyReservationsActivity.this, R.string.deletion_successful, Toast.LENGTH_LONG).show();
                                 notifyItemRemoved(position);
                             } else {
@@ -106,7 +115,12 @@ public class MyReservationsActivity extends BaseListActivity {
             notifyDataSetChanged();
         }
 
-        class ReservationViewHolder extends RecyclerView.ViewHolder{
+        public void clearReservationList() {
+            reservations.clear();
+            notifyDataSetChanged();
+        }
+
+        class ReservationViewHolder extends RecyclerView.ViewHolder {
 
             private final TextView name;
             private final TextView waitingPosition;

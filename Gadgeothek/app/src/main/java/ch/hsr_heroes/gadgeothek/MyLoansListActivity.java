@@ -1,9 +1,11 @@
 package ch.hsr_heroes.gadgeothek;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,27 +27,35 @@ public class MyLoansListActivity extends BaseListActivity {
 
         loanAdapter = new LoanAdapter();
         recyclerView.setAdapter(loanAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                LinearLayout.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
         loadLoans();
     }
 
     private void loadLoans() {
         LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
-        @Override
-        public void onCompletion(List<Loan> input) {
-            loanAdapter.setLoanList(input);
-            if(input.isEmpty()){
-                setEmptyMessage("No Loans Yet. There is cool stuff to be tested. visit the library");
-            }else{
-                clearEmptyMessage();
+            @Override
+            public void onCompletion(List<Loan> input) {
+                if (!input.isEmpty()) {
+                    loanAdapter.setLoanList(input);
+                    clearEmptyMessage();
+                } else {
+                    setEmptyMessage("No Loans Yet. There is cool stuff to be tested. visit the library");
+                }
             }
-        }
 
-        @Override
-        public void onError(String message) {
-            Toast.makeText(MyLoansListActivity.this, "Error Loading Loans "+message, Toast.LENGTH_LONG).show();
-            setEmptyMessage( "Error Loading Loans "+message);
-        }
-    });
+            @Override
+            public void onError(String message) {
+                String errorMessage = getString(R.string.error_loading_loans) + "\n" + message;
+                Toast.makeText(MyLoansListActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                setEmptyMessage(errorMessage);
+
+                ((LoanAdapter) recyclerView.getAdapter()).clearLoanList();
+            }
+        });
     }
 
     @Override
@@ -53,9 +63,10 @@ public class MyLoansListActivity extends BaseListActivity {
         loadLoans();
     }
 
-    private class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder>{
+    private class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder> {
 
         private final List<Loan> loans = new ArrayList<>();
+
         @Override
         public LoanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new LoanViewHolder(LayoutInflater.from(parent.getContext())
@@ -71,13 +82,13 @@ public class MyLoansListActivity extends BaseListActivity {
 
             holder.name.setText(l.getGadget().getName());
 
-            if(overDueDate != null) {
-                holder.overdueDate.setText("Return Date: " + dateFormat.format(overDueDate));
+            if (overDueDate != null) {
+                holder.overdueDate.setText(getString(R.string.return_date) + dateFormat.format(overDueDate));
             } else {
-                holder.overdueDate.setText("Failed to load return date");
+                holder.overdueDate.setText(R.string.failed_loading_return_date);
             }
 
-            if(l.isOverdue()) {
+            if (l.isOverdue()) {
                 holder.overdue.setVisibility(View.VISIBLE);
             }
         }
@@ -93,7 +104,12 @@ public class MyLoansListActivity extends BaseListActivity {
             notifyDataSetChanged();
         }
 
-        class LoanViewHolder extends RecyclerView.ViewHolder{
+        public void clearLoanList() {
+            loans.clear();
+            notifyDataSetChanged();
+        }
+
+        class LoanViewHolder extends RecyclerView.ViewHolder {
 
             private final TextView name;
             private final TextView overdueDate;
