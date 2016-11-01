@@ -50,7 +50,7 @@ public class MyReservationsActivity extends BaseListActivity {
 
             @Override
             public void onError(String message) {
-                String errorMessage = getString(R.string.error_loading_reservations) + "\n" + message;
+                String errorMessage = getString(R.string.error_loading_reservations, message);
                 Toast.makeText(MyReservationsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                 setEmptyMessage(errorMessage);
 
@@ -78,7 +78,7 @@ public class MyReservationsActivity extends BaseListActivity {
         public void onBindViewHolder(ReservationViewHolder holder, final int position) {
             final Reservation r = reservations.get(position);
             holder.name.setText(r.getGadget().getName());
-            holder.waitingPosition.setText("Waiting Position: " + r.getWatingPosition());
+            holder.waitingPosition.setText(getString(R.string.waiting_position, r.getWatingPosition()));
             holder.manufacturer.setText(r.getGadget().getManufacturer());
 
             holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class MyReservationsActivity extends BaseListActivity {
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(MyReservationsActivity.this, getString(R.string.unable_to_delete_reservation) + "\n" + message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(MyReservationsActivity.this, getString(R.string.unable_to_delete_reservation, message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

@@ -75,12 +75,12 @@ public abstract class BaseActivity extends AppCompatActivity
                 @Override
                 public void onCompletion(Boolean input) {
                     navigateTo(LoginActivity.class);
-                    Toast.makeText(BaseActivity.this, "Sucessfully logged out", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BaseActivity.this, R.string.sucessful_logout, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onError(String message) {
-                    Toast.makeText(BaseActivity.this, "Error Logging Out: " + message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(BaseActivity.this, getString(R.string.logout_error, message), Toast.LENGTH_LONG).show();
                 }
             });
         }

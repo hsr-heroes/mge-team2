@@ -19,7 +19,7 @@
     <string name="action_settings">Settings</string>
     <string name="hint_custom_server">Custom Server URI</string>
 
-    <string name="default_server">"http://10.0.2.2:8080/public"</string>
+    <string name="default_server">"http://192.168.178.24:8080/public"</string>
     <string name="enter_valid_uri">Please enter a valid URI</string>
     <string name="custom_server_switch_description">Do you want to login on a custom server?</string>
     <string name="default_custom_server">http://mge8.dev.ifs.hsr.ch/public</string>
@@ -28,7 +28,7 @@
     <string name="uri_required">Custom server URI is required</string>
     <string name="login_successful">Login succeeded</string>
     <string name="login_failed">Login failed</string>
-    <string name="no_server_connection">Could not connect to server</string>
+    <string name="no_server_connection">Could not connect to server: %1$s</string>
     <string name="enter_a_valid_email_address">Please enter a valid email address</string>
     <string name="email_address_required">Email address is required</string>
     <string name="password_required">Password is required</string>
@@ -37,14 +37,20 @@
     <string name="student_number_required">Student number is required</string>
     <string name="reservation_successful">Reservation successful</string>
     <string name="reservation_failed">Reservation failed</string>
-    <string name="unable_to_reserve_gadget">Unable to reserve gadget</string>
+    <string name="unable_to_reserve_gadget">Unable to reserve gadget:\n%1$s</string>
     <string name="deletion_successful">Reservation successful deleted</string>
     <string name="deletion_failed">Deletion failed</string>
-    <string name="unable_to_delete_reservation">Unable to delete reservation</string>
+    <string name="unable_to_delete_reservation">Unable to delete reservation\n%1$s</string>
     <string name="error_loading_gadgets">"Error loading gadgets "</string>
     <string name="failed_loading_return_date">Failed to load return date</string>
-    <string name="return_date">"Return Date: "</string>
-    <string name="error_loading_loans">"Error loading loans "</string>
-    <string name="error_loading_reservations">"Error loading reservations "</string>
+    <string name="return_date">"Return Date: %1$s"</string>
+    <string name="error_loading_loans">"Error loading loans: %1$s"</string>
+    <string name="error_loading_reservations">"Error loading reservations:\n%1$s"</string>
     <string name="no_reservations_found">No Reservations. You can reserve gadgets in the All Gadgets menu :-))</string>
+    <string name="no_gadgets_yet">No Gadgets at this School... Go Go Inspector Gadget =)</string>
+    <string name="sucessful_logout">Sucessfully logged out</string>
+    <string name="logout_error">Error Logging Out: \n%1$s</string>
+    <string name="no_loans_yet">No Loans Yet. There is cool stuff to be tested. visit the library!</string>
+    <string name="waiting_position">Waiting Position: %1$d</string>
+    <string name="register_on_custom_server">Do you want to register on a custom server?</string>
 </resources>

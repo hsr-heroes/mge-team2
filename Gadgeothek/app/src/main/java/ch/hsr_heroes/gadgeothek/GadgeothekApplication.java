@@ -9,6 +9,6 @@ public class GadgeothekApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LibraryService.setServerAddress("http://localhost:8080/public");
+        LibraryService.setServerAddress(getString(R.string.default_server));
     }
 }

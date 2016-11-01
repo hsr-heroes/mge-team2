@@ -43,7 +43,7 @@ public class GadgetListActivity extends BaseListActivity {
                     gadgetAdapter.setGadgetList(input);
                     clearEmptyMessage();
                 } else {
-                    setEmptyMessage("No Gadgets at this School... Go Go Inspector Gadget =)");
+                    setEmptyMessage(getString(R.string.no_gadgets_yet));
                 }
             }
 
@@ -95,7 +95,7 @@ public class GadgetListActivity extends BaseListActivity {
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(GadgetListActivity.this, getString(R.string.unable_to_reserve_gadget) + "\n" + message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(GadgetListActivity.this, getString(R.string.unable_to_reserve_gadget, message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

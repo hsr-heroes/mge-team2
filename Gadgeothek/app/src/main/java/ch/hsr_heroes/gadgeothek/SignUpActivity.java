@@ -41,7 +41,7 @@ public class SignUpActivity extends AppCompatActivity implements CustomServerPar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        customServerFragment.setDescription("Do you want to register on a custom server?");
+        customServerFragment.setDescription(getString(R.string.register_on_custom_server));
 
         inputName = (TextInputEditText) findViewById(R.id.input_name);
         inputEmail = (TextInputEditText) findViewById(R.id.input_email);
@@ -88,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity implements CustomServerPar
 
                                 @Override
                                 public void onError(String message) {
-                                    Toast.makeText(SignUpActivity.this, getString(R.string.no_server_connection) + "\n" + message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SignUpActivity.this, getString(R.string.no_server_connection, message), Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                                 }
                             });
@@ -100,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity implements CustomServerPar
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(SignUpActivity.this, getString(R.string.no_server_connection) + "\n" + message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, getString(R.string.no_server_connection, message), Toast.LENGTH_LONG).show();
                     }
                 });
             }

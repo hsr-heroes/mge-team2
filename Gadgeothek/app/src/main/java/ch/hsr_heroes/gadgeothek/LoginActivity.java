@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection) + "\n" + message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection, message), Toast.LENGTH_LONG).show();
                     }
                 });
             }

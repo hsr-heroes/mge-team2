@@ -43,13 +43,13 @@ public class MyLoansListActivity extends BaseListActivity {
                     loanAdapter.setLoanList(input);
                     clearEmptyMessage();
                 } else {
-                    setEmptyMessage("No Loans Yet. There is cool stuff to be tested. visit the library");
+                    setEmptyMessage(getString(R.string.no_loans_yet));
                 }
             }
 
             @Override
             public void onError(String message) {
-                String errorMessage = getString(R.string.error_loading_loans) + "\n" + message;
+                String errorMessage = getString(R.string.error_loading_loans, message);
                 Toast.makeText(MyLoansListActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                 setEmptyMessage(errorMessage);
 
@@ -83,7 +83,7 @@ public class MyLoansListActivity extends BaseListActivity {
             holder.name.setText(l.getGadget().getName());
 
             if (overDueDate != null) {
-                holder.overdueDate.setText(getString(R.string.return_date) + dateFormat.format(overDueDate));
+                holder.overdueDate.setText(getString(R.string.return_date, dateFormat.format(overDueDate)));
             } else {
                 holder.overdueDate.setText(R.string.failed_loading_return_date);
             }
