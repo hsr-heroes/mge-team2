@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class MyLoansListActivity extends BaseListActivity {
             @Override
             public void onError(String message) {
                 String errorMessage = getString(R.string.error_loading_loans, message);
-                Toast.makeText(MyLoansListActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                showToastMessage(errorMessage);
                 setEmptyMessage(errorMessage);
 
                 ((LoanAdapter) recyclerView.getAdapter()).clearLoanList();

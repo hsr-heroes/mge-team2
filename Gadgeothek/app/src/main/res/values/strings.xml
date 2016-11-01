@@ -53,4 +53,8 @@
     <string name="no_loans_yet">No Loans Yet. There is cool stuff to be tested. visit the library!</string>
     <string name="waiting_position">Waiting Position: %1$d</string>
     <string name="register_on_custom_server">Do you want to register on a custom server?</string>
+    <string name="really_delete">Really delete?</string>
+    <string name="really_delete_reservation">Are you sure you want to cancel the reservation of %1$s?</string>
+    <string name="delete_reservation">Delete reservation</string>
+    <string name="abort_action">Cancel</string>
 </resources>

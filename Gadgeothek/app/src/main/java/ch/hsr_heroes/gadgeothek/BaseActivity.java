@@ -75,12 +75,12 @@ public abstract class BaseActivity extends AppCompatActivity
                 @Override
                 public void onCompletion(Boolean input) {
                     navigateTo(LoginActivity.class);
-                    Toast.makeText(BaseActivity.this, R.string.sucessful_logout, Toast.LENGTH_LONG).show();
+                    showToastMessage(R.string.sucessful_logout);
                 }
 
                 @Override
                 public void onError(String message) {
-                    Toast.makeText(BaseActivity.this, getString(R.string.logout_error, message), Toast.LENGTH_LONG).show();
+                    showToastMessage(getString(R.string.logout_error, message));
                 }
             });
         }
@@ -96,4 +96,10 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
 
+    protected void showToastMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+    protected void showToastMessage(int msgResId) {
+        Toast.makeText(this, msgResId, Toast.LENGTH_LONG).show();
+    }
 }

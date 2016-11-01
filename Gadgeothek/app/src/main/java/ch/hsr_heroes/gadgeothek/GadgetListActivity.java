@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class GadgetListActivity extends BaseListActivity {
             @Override
             public void onError(String message) {
                 String errorMessage = getString(R.string.error_loading_gadgets) + "\n" + message;
-                Toast.makeText(GadgetListActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                showToastMessage(errorMessage);
                 setEmptyMessage(errorMessage);
 
                 ((GadgetAdapter) recyclerView.getAdapter()).clearGadgetList();
@@ -87,15 +86,15 @@ public class GadgetListActivity extends BaseListActivity {
                         public void onCompletion(Boolean reserved) {
                             if (reserved) {
                                 startActivity(new Intent(GadgetListActivity.this, MyReservationsActivity.class));
-                                Toast.makeText(GadgetListActivity.this, R.string.reservation_successful, Toast.LENGTH_LONG).show();
+                                showToastMessage(R.string.reservation_successful);
                             } else {
-                                Toast.makeText(GadgetListActivity.this, R.string.reservation_failed, Toast.LENGTH_LONG).show();
+                                showToastMessage(R.string.reservation_failed);
                             }
                         }
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(GadgetListActivity.this, getString(R.string.unable_to_reserve_gadget, message), Toast.LENGTH_LONG).show();
+                            showToastMessage(getString(R.string.unable_to_reserve_gadget));
                         }
                     });
                 }

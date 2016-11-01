@@ -1,5 +1,7 @@
 package ch.hsr_heroes.gadgeothek;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class MyReservationsActivity extends BaseListActivity {
             @Override
             public void onError(String message) {
                 String errorMessage = getString(R.string.error_loading_reservations, message);
-                Toast.makeText(MyReservationsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                showToastMessage(errorMessage);
                 setEmptyMessage(errorMessage);
 
                 ((ReservationsAdapter) recyclerView.getAdapter()).clearReservationList();
@@ -84,11 +85,21 @@ public class MyReservationsActivity extends BaseListActivity {
             holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    new AlertDialog.Builder(MyReservationsActivity.this).setMessage(getString(R.string.really_delete_reservation, r.getGadget().getName()))
+                            .setPositiveButton(R.string.delete_reservation, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    deleteReservation();
+                                }
+                            }).setNegativeButton(R.string.abort_action, null).setCancelable(true).show();
+                }
+
+                private void deleteReservation() {
                     LibraryService.deleteReservation(r, new Callback<Boolean>() {
                         @Override
                         public void onCompletion(Boolean deleted) {
                             if (deleted) {
-                                Toast.makeText(MyReservationsActivity.this, R.string.deletion_successful, Toast.LENGTH_LONG).show();
+                                showToastMessage(R.string.deletion_successful);
                                 reservations.remove(position);
                                 notifyItemRemoved(position);
 
@@ -96,13 +107,13 @@ public class MyReservationsActivity extends BaseListActivity {
                                     setEmptyMessage(getString(R.string.no_reservations_found));
                                 }
                             } else {
-                                Toast.makeText(MyReservationsActivity.this, R.string.deletion_failed, Toast.LENGTH_LONG).show();
+                                showToastMessage(R.string.deletion_failed);
                             }
                         }
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(MyReservationsActivity.this, getString(R.string.unable_to_delete_reservation, message), Toast.LENGTH_LONG).show();
+                            showToastMessage(getString(R.string.unable_to_delete_reservation, message));
                         }
                     });
                 }
@@ -142,4 +153,5 @@ public class MyReservationsActivity extends BaseListActivity {
         }
 
     }
+
 }
