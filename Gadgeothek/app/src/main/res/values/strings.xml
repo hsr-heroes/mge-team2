@@ -41,7 +41,7 @@
     <string name="deletion_successful">Reservation successful deleted</string>
     <string name="deletion_failed">Deletion failed</string>
     <string name="unable_to_delete_reservation">Unable to delete reservation\n%1$s</string>
-    <string name="error_loading_gadgets">"Error loading gadgets "</string>
+    <string name="error_loading_gadgets">"Error loading gadgets: %1$s"</string>
     <string name="failed_loading_return_date">Failed to load return date</string>
     <string name="return_date">"Return Date: %1$s"</string>
     <string name="error_loading_loans">"Error loading loans: %1$s"</string>

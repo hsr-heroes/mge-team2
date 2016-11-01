@@ -48,7 +48,7 @@ public class GadgetListActivity extends BaseListActivity {
 
             @Override
             public void onError(String message) {
-                String errorMessage = getString(R.string.error_loading_gadgets) + "\n" + message;
+                String errorMessage = getString(R.string.error_loading_gadgets,  message);
                 showToastMessage(errorMessage);
                 setEmptyMessage(errorMessage);
 
