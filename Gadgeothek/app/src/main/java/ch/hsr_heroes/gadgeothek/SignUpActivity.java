@@ -15,7 +15,7 @@ import android.widget.Toast;
 import ch.hsr_heroes.gadgeothek.service.Callback;
 import ch.hsr_heroes.gadgeothek.service.LibraryService;
 
-public class SignUpActivity extends AppCompatActivity implements CustomServerPartialFragment.CustomServerListener {
+public class SignUpActivity extends BaseAppStartActivity {
     private TextInputEditText inputName;
     private TextInputEditText inputEmail;
     private TextInputEditText inputPassword;
@@ -25,16 +25,6 @@ public class SignUpActivity extends AppCompatActivity implements CustomServerPar
     private TextInputLayout inputLayoutPassword;
     private TextInputLayout inputLayoutStudentNumber;
     private Button buttonSignUp;
-    private CustomServerPartialFragment customServerFragment;
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-
-        if (fragment instanceof CustomServerPartialFragment) {
-            customServerFragment = (CustomServerPartialFragment) fragment;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,24 +64,7 @@ public class SignUpActivity extends AppCompatActivity implements CustomServerPar
                     @Override
                     public void onCompletion(Boolean registered) {
                         if (registered) {
-                            LibraryService.login(email, password, new Callback<Boolean>() {
-                                @Override
-                                public void onCompletion(Boolean loggedIn) {
-                                    if (loggedIn) {
-                                        startActivity(new Intent(SignUpActivity.this, GadgetListActivity.class));
-                                        Toast.makeText(SignUpActivity.this, R.string.login_successful, Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(SignUpActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                    }
-                                }
-
-                                @Override
-                                public void onError(String message) {
-                                    Toast.makeText(SignUpActivity.this, getString(R.string.no_server_connection, message), Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                }
-                            });
+                            doLogIn(email, password, customServerFragment.getServer());
                         } else {
                             Toast.makeText(SignUpActivity.this, R.string.registration_failed, Toast.LENGTH_LONG).show();
                         }

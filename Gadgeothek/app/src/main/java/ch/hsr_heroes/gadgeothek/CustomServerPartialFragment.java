@@ -1,5 +1,7 @@
 package ch.hsr_heroes.gadgeothek;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -17,6 +19,10 @@ public class CustomServerPartialFragment extends Fragment {
     private TextInputLayout inputLayoutCustomServer;
     private TextInputEditText inputCustomServer;
 
+    public boolean isCustomServerUsed() {
+        return switchCustomServer.isChecked();
+    }
+
     public interface CustomServerListener {
         void onServerChanged(String newServer, boolean valid);
     }
@@ -29,6 +35,10 @@ public class CustomServerPartialFragment extends Fragment {
         switchCustomServer = (SwitchCompat) view.findViewById(R.id.switch_custom_server);
         inputLayoutCustomServer = (TextInputLayout) view.findViewById(R.id.input_layout_custom_server_uri);
         inputCustomServer = (TextInputEditText) view.findViewById(R.id.input_custom_server_uri);
+
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        switchCustomServer.setChecked(preferences.getBoolean(Prefs.CUSTOM_SERVER, false));
+        inputCustomServer.setText(preferences.getString(Prefs.LAST_SERVER, getString(R.string.default_server)));
 
         inputCustomServer.addTextChangedListener(new TextWatcher() {
 

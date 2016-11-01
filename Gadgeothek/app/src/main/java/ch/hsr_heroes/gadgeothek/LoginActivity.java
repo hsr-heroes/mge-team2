@@ -1,36 +1,21 @@
 package ch.hsr_heroes.gadgeothek;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import ch.hsr_heroes.gadgeothek.service.Callback;
-import ch.hsr_heroes.gadgeothek.service.LibraryService;
-
-public class LoginActivity extends AppCompatActivity implements CustomServerPartialFragment.CustomServerListener {
+public class LoginActivity extends BaseAppStartActivity {
     private TextInputEditText inputEmail;
     private TextInputEditText inputPassword;
     private TextInputLayout inputLayoutEmail;
     private TextInputLayout inputLayoutPassword;
     private Button buttonLogin;
-    private CustomServerPartialFragment customServerFragment;
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-
-        if (fragment instanceof CustomServerPartialFragment) {
-            customServerFragment = (CustomServerPartialFragment) fragment;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +27,8 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
 
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
+
+        inputEmail.setText(getPreferences(Context.MODE_PRIVATE).getString(Prefs.LAST_EMAIL, ""));
 
         buttonLogin = (Button) findViewById(R.id.button_login);
 
@@ -62,28 +49,7 @@ public class LoginActivity extends AppCompatActivity implements CustomServerPart
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                String password = inputPassword.getText().toString();
-
-
-                LibraryService.setServerAddress(customServerFragment.getServer());
-
-                LibraryService.login(email, password, new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean loggedIn) {
-                        if (loggedIn) {
-                            startActivity(new Intent(LoginActivity.this, GadgetListActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME));
-                            Toast.makeText(LoginActivity.this, R.string.login_successful, Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection, message), Toast.LENGTH_LONG).show();
-                    }
-                });
+                doLogIn(inputEmail.getText().toString(), inputPassword.getText().toString(), LoginActivity.this.customServerFragment.getServer());
             }
         });
 
