@@ -3,7 +3,7 @@
     <string name="title_activity_settings">Einstellungen</string>
     <string name="abort_action">Abbrechen</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="button_description_create_account">Bitte registriere dich sich um die Gadgeothek zu nutzen.</string>
+    <string name="button_description_create_account">Bitte registriere dich, um die Gadgeothek zu nutzen.</string>
     <string name="button_login">Einloggen</string>
     <string name="button_sign_up">Registrieren</string>
     <string name="button_text_create_account">Account erstellen</string>
@@ -29,7 +29,7 @@
     <string name="name_required">Name ist zwingend</string>
     <string name="navigation_drawer_close">Navigation schliessen</string>
     <string name="navigation_drawer_open">Navigation öffnen</string>
-    <string name="no_gadgets_yet">Kleine Gadgets hier...Go go inspector Gadget =)</string>
+    <string name="no_gadgets_yet">Keine Gadgets hier...Go go inspector Gadget =)</string>
     <string name="no_loans_yet">Noch nichts ausgeliehen. Geh in die Gadgeothek um ein tolles Gadget auszuprobieren!</string>
     <string name="no_reservations_found">Du hast noch keine Reservationen. Reserviere dein Lieblingsgaget gleich hier und jetzt in dieser App!</string>
     <string name="no_server_connection">Konnte nicht mit Server verbinden: %1$s</string>
