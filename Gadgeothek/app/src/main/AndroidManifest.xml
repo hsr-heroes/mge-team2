@@ -14,7 +14,6 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,15 +21,15 @@
             android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".GadgetListActivity"
-            android:label="All Gadgets"
+            android:label="@string/nav_all_gadgets"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MyReservationsActivity"
-            android:label="My Reservations"
+            android:label="@string/nav_my_reservations"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MyLoansListActivity"
-            android:label="My Gadgets"
+            android:label="@string/nav_my_gadgets"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

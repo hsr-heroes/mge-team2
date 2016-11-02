@@ -6,22 +6,22 @@
         <item
             android:id="@+id/nav_my_gadgets"
             android:icon="@drawable/ic_menu_camera"
-            android:title="My Gadgets" />
+            android:title="@string/nav_my_gadgets" />
         <item
             android:id="@+id/nav_my_reservations"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="My Reservations" />
+            android:title="@string/nav_my_reservations" />
         <item
             android:id="@+id/nav_all_gadgets"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="All Gadgets" />
+            android:title="@string/nav_all_gadgets" />
     </group>
     <group
         android:id="@+id/nav_actions">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_send"
-            android:title="Logout" />
+            android:title="@string/nav_logout" />
     </group>
 
 </menu>

@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="Overdue"
+        android:text="@string/overdue"
         android:textColor="@color/colorOverdue"
         android:textStyle="bold"
         android:layout_width="wrap_content"

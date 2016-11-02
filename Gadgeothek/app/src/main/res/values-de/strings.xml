@@ -1,0 +1,56 @@
+
+<resources>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="abort_action">Abbrechen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="button_description_create_account">Bitte registriere dich sich um die Gadgeothek zu nutzen.</string>
+    <string name="button_login">Einloggen</string>
+    <string name="button_sign_up">Registrieren</string>
+    <string name="button_text_create_account">Account erstellen</string>
+    <string name="custom_server_switch_description">Möchtest du eine andere Gadgeothek nutzen?</string>
+    <string name="delete_reservation">Reservation löschen</string>
+    <string name="deletion_failed">Löschen fehlgeschlagen</string>
+    <string name="deletion_successful">Löschen erfolgreich</string>
+    <string name="email_address_required">Es muss eine Email-Adresse eingegeben werden</string>
+    <string name="enter_a_valid_email_address">Bitte gib eine gültige Email-Adresse an</string>
+    <string name="enter_valid_uri">Bitte gib die URL Ihrer Gadgeothek an</string>
+    <string name="error_loading_gadgets">Fehler beim Laden des Gadgets: %1$s</string>
+    <string name="error_loading_loans">Fehler beim Laden deiner Reservationen: %1$s</string>
+    <string name="error_loading_reservations">Fehler beim Laden der Reservationen: %1$s</string>
+    <string name="failed_loading_return_date">Fehler beim Laden des Rückgabedatum</string>
+    <string name="hint_custom_server">Eigene Server URI</string>
+    <string name="hint_email">EMail-Adresse</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_password">Passwort</string>
+    <string name="hint_student_number">Studentennummer</string>
+    <string name="login_failed">Login fehlgeschlagen</string>
+    <string name="login_successful">Login erfolgreich</string>
+    <string name="logout_error">Fehler beim Ausloggen: %1$s</string>
+    <string name="name_required">Name ist zwingend</string>
+    <string name="navigation_drawer_close">Navigation schliessen</string>
+    <string name="navigation_drawer_open">Navigation öffnen</string>
+    <string name="no_gadgets_yet">Kleine Gadgets hier...Go go inspector Gadget =)</string>
+    <string name="no_loans_yet">Noch nichts ausgeliehen. Geh in die Gadgeothek um ein tolles Gadget auszuprobieren!</string>
+    <string name="no_reservations_found">Du hast noch keine Reservationen. Reserviere dein Lieblingsgaget gleich hier und jetzt in dieser App!</string>
+    <string name="no_server_connection">Konnte nicht mit Server verbinden: %1$s</string>
+    <string name="password_required">Passwort ist zwingend</string>
+    <string name="really_delete">Wirklich löschen?</string>
+    <string name="really_delete_reservation">Möchtest du wirklich die Reservation von %1$s stornieren?</string>
+    <string name="register_on_custom_server">Möchtest du dich auf einem benutzerdefinierten Server registrieren?</string>
+    <string name="registration_failed">Registrierung fehlgeschlagen</string>
+    <string name="reservation_failed">Registirerung erfolgrich</string>
+    <string name="reservation_successful">Reservation erfolgreich</string>
+    <string name="return_date">Zurückgeben am: %1$s</string>
+    <string name="student_number_required">Studentennummer ist zwingend</string>
+    <string name="sucessful_logout">Erfolgreich ausgeloggt</string>
+    <string name="title_activity_main">Gadgeothek</string>
+    <string name="unable_to_delete_reservation">Konnte Reservation nicht stornieren: %1$s</string>
+    <string name="unable_to_reserve_gadget">Konnte Gadget nicht reservieren: %1$s</string>
+    <string name="uri_required">Benutzerdefinierte URI ist zwingend</string>
+    <string name="waiting_position">Warteposition: %1$d</string>
+    <string name="nav_my_gadgets">Meine Gadgets</string>
+    <string name="nav_my_reservations">Meine Reservationen</string>
+    <string name="nav_all_gadgets">Alle Gadgets</string>
+    <string name="nav_logout">Ausloggen</string>
+    <string name="overdue">Schnell zurückgeben!</string>
+</resources>
