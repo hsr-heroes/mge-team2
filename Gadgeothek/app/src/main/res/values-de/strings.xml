@@ -38,7 +38,7 @@
     <string name="really_delete_reservation">Möchtest du wirklich die Reservation von %1$s stornieren?</string>
     <string name="register_on_custom_server">Möchtest du dich auf einem benutzerdefinierten Server registrieren?</string>
     <string name="registration_failed">Registrierung fehlgeschlagen</string>
-    <string name="reservation_failed">Registirerung erfolgrich</string>
+    <string name="reservation_failed">Reservation erfolgreich</string>
     <string name="reservation_successful">Reservation erfolgreich</string>
     <string name="return_date">Zurückgeben am: %1$s</string>
     <string name="student_number_required">Studentennummer ist zwingend</string>
