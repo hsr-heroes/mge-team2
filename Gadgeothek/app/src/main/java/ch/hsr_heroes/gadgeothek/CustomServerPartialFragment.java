@@ -82,7 +82,7 @@ public class CustomServerPartialFragment extends Fragment {
                 }
             }
         });
-
+        inputLayoutCustomServer.setVisibility(switchCustomServer.isChecked() ? View.VISIBLE : View.VISIBLE);
         return view;
     }
 
