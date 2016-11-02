@@ -26,11 +26,6 @@ public class GadgetListActivity extends BaseListActivity {
         setActiveMenuItem(R.id.nav_all_gadgets);
         gadgetAdapter = new GadgetAdapter();
         recyclerView.setAdapter(gadgetAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                LinearLayout.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
         loadGadgets();
     }
 

@@ -1,11 +1,13 @@
 package ch.hsr_heroes.gadgeothek;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public abstract class BaseListActivity extends BaseActivity {
@@ -19,6 +21,9 @@ public abstract class BaseListActivity extends BaseActivity {
         emptyListPlaceholder = findViewById(R.id.empty_list_placeholder);
         emptyListText = (TextView) findViewById(R.id.empty_list_text);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                LinearLayout.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 

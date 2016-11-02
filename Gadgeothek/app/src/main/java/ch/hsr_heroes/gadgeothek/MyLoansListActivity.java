@@ -26,11 +26,6 @@ public class MyLoansListActivity extends BaseListActivity {
         setActiveMenuItem(R.id.nav_my_gadgets);
         loanAdapter = new LoanAdapter();
         recyclerView.setAdapter(loanAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                LinearLayout.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
         loadLoans();
     }
 

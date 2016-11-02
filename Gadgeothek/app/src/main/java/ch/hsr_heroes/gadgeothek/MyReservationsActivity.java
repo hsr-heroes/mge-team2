@@ -29,11 +29,6 @@ public class MyReservationsActivity extends BaseListActivity {
         setActiveMenuItem(R.id.nav_my_reservations);
         reservationsAdapter = new ReservationsAdapter();
         recyclerView.setAdapter(reservationsAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                LinearLayout.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
         loadReservations();
     }
 
