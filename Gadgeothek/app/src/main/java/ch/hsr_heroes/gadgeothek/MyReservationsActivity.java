@@ -71,7 +71,7 @@ public class MyReservationsActivity extends BaseListActivity {
         }
 
         @Override
-        public void onBindViewHolder(ReservationViewHolder holder, final int position) {
+        public void onBindViewHolder(ReservationViewHolder holder, int position) {
             final Reservation r = reservations.get(position);
             holder.name.setText(r.getGadget().getName());
             holder.waitingPosition.setText(getString(R.string.waiting_position, r.getWatingPosition()));
@@ -95,9 +95,11 @@ public class MyReservationsActivity extends BaseListActivity {
                         public void onCompletion(Boolean deleted) {
                             if (deleted) {
                                 showToastMessage(R.string.deletion_successful);
-                                reservations.remove(position);
-                                notifyItemRemoved(position);
-
+                                int index = reservations.indexOf(r);
+                                if(index >= 0) {
+                                    reservations.remove(index);
+                                    notifyItemRemoved(index);
+                                }
                                 if(getItemCount() == 0) {
                                     setEmptyMessage(getString(R.string.no_reservations_found));
                                 }
