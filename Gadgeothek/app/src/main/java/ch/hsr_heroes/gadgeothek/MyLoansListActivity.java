@@ -23,7 +23,7 @@ public class MyLoansListActivity extends BaseListActivity {
 
     protected void onCreateMainContent(ViewGroup contentView) {
         super.onCreateMainContent(contentView);
-
+        setActiveMenuItem(R.id.nav_my_gadgets);
         loanAdapter = new LoanAdapter();
         recyclerView.setAdapter(loanAdapter);
 

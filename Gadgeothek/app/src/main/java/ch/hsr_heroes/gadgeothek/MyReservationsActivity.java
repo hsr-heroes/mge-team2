@@ -26,7 +26,7 @@ public class MyReservationsActivity extends BaseListActivity {
     @Override
     protected void onCreateMainContent(ViewGroup contentView) {
         super.onCreateMainContent(contentView);
-
+        setActiveMenuItem(R.id.nav_my_reservations);
         reservationsAdapter = new ReservationsAdapter();
         recyclerView.setAdapter(reservationsAdapter);
 

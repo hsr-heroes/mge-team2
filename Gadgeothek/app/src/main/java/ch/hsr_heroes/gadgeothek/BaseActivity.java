@@ -21,6 +21,8 @@ public abstract class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private NavigationView navigationView;
+
     protected abstract void onCreateMainContent(ViewGroup contentView);
 
     @Override
@@ -36,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         onCreateMainContent((ViewGroup) findViewById(R.id.content_main));
@@ -101,5 +103,9 @@ public abstract class BaseActivity extends AppCompatActivity
     }
     protected void showToastMessage(int msgResId) {
         Toast.makeText(this, msgResId, Toast.LENGTH_LONG).show();
+    }
+
+    protected void setActiveMenuItem(int itemId) {
+        navigationView.setCheckedItem(itemId);
     }
 }

@@ -23,7 +23,7 @@ public class GadgetListActivity extends BaseListActivity {
 
     protected void onCreateMainContent(ViewGroup contentView) {
         super.onCreateMainContent(contentView);
-
+        setActiveMenuItem(R.id.nav_all_gadgets);
         gadgetAdapter = new GadgetAdapter();
         recyclerView.setAdapter(gadgetAdapter);
 
