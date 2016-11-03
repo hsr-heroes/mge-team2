@@ -8,7 +8,7 @@
     <string name="button_sign_up">Registrieren</string>
     <string name="button_text_create_account">Account erstellen</string>
     <string name="custom_server_switch_description">Möchtest du eine andere Gadgeothek nutzen?</string>
-    <string name="delete_reservation">Reservation löschen</string>
+    <string name="delete_reservation">Löschen</string>
     <string name="deletion_failed">Löschen fehlgeschlagen</string>
     <string name="deletion_successful">Löschen erfolgreich</string>
     <string name="email_address_required">Es muss eine Email-Adresse eingegeben werden</string>
